@@ -8,7 +8,6 @@ import com.example.helloandroid.R;
 import com.example.helloandroid.model.Product;
 import com.example.helloandroid.utils.BundleKeys;
 import com.example.helloandroid.utils.Constants;
-import com.example.helloandroid.view.BarcodeScannerActivity;
 import com.example.helloandroid.view.fragments.ProductDetailsFragment;
 import com.example.helloandroid.view.fragments.ProductListFragment;
 import com.example.helloandroid.view.fragments.interfaces.IProductDetailsFragmentListener;

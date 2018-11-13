@@ -11,13 +11,14 @@ import androidx.room.RoomMasterTable;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Product.class}, version = 1)
+@Database(entities = {Product.class}, version = 2)
 public abstract class ProductsDatabase extends RoomDatabase {
 
-    static final Migration MIGRATION_1_2 = new Migration(0, 1) {
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            // add code here if migration is there.
+            database.execSQL("ALTER TABLE products "
+                    + " ADD COLUMN qunatity INTEGER" + " ADD COLUMN unit TEXT");
         }
     };
     private static ProductsDatabase INSTANCE;

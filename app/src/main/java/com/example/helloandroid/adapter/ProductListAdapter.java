@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.example.helloandroid.R;
 import com.example.helloandroid.model.Product;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         if (mProducts != null && mProducts.size() > 0) {
             Product product = mProducts.get(position);
             holder.mProductTitle.setText(product.getProductName());
+            holder.mProdQuantity.setText(String.valueOf(product.getQuantity()));
+            holder.mProdUnit.setText(product.getUnit());
         }
     }
 
@@ -54,6 +58,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.product_title)
         protected TextView mProductTitle;
+        @BindView(R.id.prod_list_quantity)
+        protected TextView mProdQuantity;
+        @BindView(R.id.prod_list_unit)
+        protected TextView mProdUnit;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -7,19 +7,18 @@
         android:name=".ShoppingList"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".view.BarcodeScannerActivity"
+            android:name=".view.activities.BarcodeScannerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_barcode_scanner"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".view.interfaces.AddProductActivity" />
+        <activity android:name=".view.activities.AddProductActivity" />
         <activity
             android:name=".view.activities.ProductMainActivity"
-            android:label="@string/title_activity_product_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,15 +1,13 @@
 package com.example.helloandroid.view.fragments;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.helloandroid.R;
-import com.example.helloandroid.ShoppingList;
 import com.example.helloandroid.adapter.ProductListAdapter;
-import com.example.helloandroid.databases.ProductsDatabase;
 import com.example.helloandroid.model.Product;
 import com.example.helloandroid.presenter.ProductListPresenter;
 import com.example.helloandroid.view.activities.ProductMainActivity;
@@ -19,11 +17,11 @@ import com.example.helloandroid.view.interfaces.IProductListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,7 +38,7 @@ public class ProductListFragment extends Fragment implements IProductListView, P
     private ProductListPresenter mProductListPresenter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View productListView = inflater.inflate(R.layout.fragment_product_main, container, false);
         ButterKnife.bind(this, productListView);
@@ -53,32 +51,22 @@ public class ProductListFragment extends Fragment implements IProductListView, P
 
     private void init() {
         mProducts = new ArrayList<>();
-//        mProducts.addAll(mProductListPresenter.getProducts());
         mProductList.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         mProductList.setItemAnimator(new DefaultItemAnimator());
         mProductListAdapter = new ProductListAdapter(getContext(), mProducts, this);
         mProductList.setAdapter(mProductListAdapter);
-
-        Product product = new Product();
-        product.setProductName("Product 1");
-        product.setId(11001);
-        getProductDb().getProductDao().insertProduct(product);
-    }
-
-    private ProductsDatabase getProductDb() {
-        return Room.databaseBuilder(ShoppingList.getAppContext(), ProductsDatabase.class, "db-products").allowMainThreadQueries().build();
     }
 
     private void updateUi() {
-        mProducts.addAll(getProductDb().getProductDao().getAllProducts());
+        mProducts.addAll(mProductListPresenter.getProducts());
         mProductListAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ProductMainActivity) {
-            iActionListener = (IProductListFragmentActionListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ProductMainActivity) {
+            iActionListener = (IProductListFragmentActionListener) context;
         }
     }
 

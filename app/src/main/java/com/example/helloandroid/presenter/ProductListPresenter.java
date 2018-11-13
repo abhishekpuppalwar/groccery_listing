@@ -3,16 +3,17 @@ package com.example.helloandroid.presenter;
 import com.example.helloandroid.model.Product;
 import com.example.helloandroid.presenter.interfaces.IBasePresenter;
 import com.example.helloandroid.view.interfaces.IBaseView;
+import com.example.helloandroid.view.interfaces.IProductListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListPresenter implements IBasePresenter {
-    private final IBaseView mBaseView;
+public class ProductListPresenter extends BasePresenter {
+    private final IProductListView mBaseView;
     private List<Product> mProducts;
 
-    public ProductListPresenter(IBaseView baseView) {
-        mBaseView = baseView;
+    public ProductListPresenter(IProductListView view) {
+        mBaseView = view;
         //TODO: init event bus
     }
 
@@ -27,19 +28,6 @@ public class ProductListPresenter implements IBasePresenter {
     }
 
     public List<Product> getProducts() {
-        if(mProducts != null) {
-            return mProducts;
-        }
-        return getDummyProducts();
-    }
-
-    private List<Product> getDummyProducts() {
-        List<Product> products = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Product product = new Product();
-            product.setProductName("Product" + i);
-            products.add(product);
-        }
-        return products;
+        return getDb().getProductDao().getAllProducts();
     }
 }

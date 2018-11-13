@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">HelloAndroid</string>
+    <string name="placeholder_product_title">Title</string>
+    <string name="label_quantity">Quantity (ml)</string>
+    <string name="label_rate">Rate (INR)</string>
+    <string name="label_price">Price (INR)</string>
+
+    <string name="title_activity_barcode_scanner">BarcodeScannerActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="label_product">Product</string>
+    <string name="label_desc">Description</string>
+    <string name="label_add">Add</string>
+    <string name="content_description_close_button">Content Description Close Button</string>
+    <string name="content_description_product_img">product image</string>
+    <string name="content_description_plus_button">Plus Button</string>
+    <string name="content_description_minus_button">Minus Button</string>
+    <string name="title_activity_product_main">ProductMainActivity</string>
+    <string name="action_settings">Settings</string>
+</resources>
